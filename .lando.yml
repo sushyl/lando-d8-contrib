@@ -1,0 +1,36 @@
+name: d8contrib
+recipe: drupal8
+config:
+  webroot: docroot
+  xdebug: true
+proxy:
+  mailhog:
+    - mail.d8contrib.lndo.site
+  adminer:
+    - adminer.d8contrib.lndo.site
+services:
+  database:
+    creds:
+      user: database
+      password: database
+      database: database
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+    portforward: true
+  adminer:
+    type: compose
+    services:
+      image: dehy/adminer
+      command: /bin/s6-svscan /etc/services.d
+    portforward: true
+tooling:
+  npm:
+    service: node
+  yarn:
+    service: node
+  node:
+    service: node
+  gulp:
+    service: node
