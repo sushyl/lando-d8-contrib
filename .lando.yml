@@ -3,6 +3,7 @@ recipe: drupal8
 config:
   webroot: docroot
   xdebug: true
+  drush: "*"
 proxy:
   mailhog:
     - mail.d8contrib.lndo.site
